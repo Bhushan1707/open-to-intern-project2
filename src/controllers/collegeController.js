@@ -8,7 +8,6 @@ const isvalid=function(value){
   if(typeof value !== 'string') return false
   if(typeof value === 'string' && value.trim().length===0) return false
   return true
-
 }
 let linkCheck=/(https?:\/\/.*\.(?:jpg|jpeg|png|gif))/i
 let nameCheck = /^[a-zA-Z]+$/
@@ -33,7 +32,7 @@ const createCollage  = async function (req, res) {
     if(!linkCheck.test(logoLink)) return res.status(400).send({status:false, msg:"logoLink invalid"})
 
     //name unique test
-      const dataCheck = await collagemodel.findOne({ name: name.toLowerCase()})
+    const dataCheck = await collagemodel.findOne({ name: name.toLowerCase()})
     if(dataCheck)return res.status(400).send({status:false, msg:"name is already exist"})
 
     const savedate=await collagemodel.create(data)
@@ -49,7 +48,7 @@ const createCollage  = async function (req, res) {
     const collegeName = req.query.name
     if (!isvalid(collegeName)) return res.status(400).send({ status: false, msg: "Enter valid college Name"})
 
-      const savedata = await collagemodel.findOne({ name: collegeName.toLowerCase() })
+    const savedata = await collagemodel.findOne({ name: collegeName.toLowerCase() })
     if(!savedata) return res.status(404).send({status:false, msg:" College Not found"})
       const { name, fullName, logoLink } = savedata
 

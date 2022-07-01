@@ -95,7 +95,8 @@ Refer below sample
   "data": {
     "name": "xyz",
     "fullName": "Some Institute of Engineering and Technology",
-    "logoLink": "some public s3 link for a college logo",
+    "logoLink": "some public s3 l
+    ink for a college logo",
     "interns": [
       {
         "_id": "123a47301a53ecaeea02be59",

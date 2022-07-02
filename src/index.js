@@ -16,7 +16,6 @@ mongoose.connect(url, {
 
 app.use('/', route)
 
-<<<<<<< HEAD
 app.all('*', function (req, res) {
     throw new Error("Bad Request");
 })
@@ -25,9 +24,6 @@ app.use(function (e, req, res, next) {
     if (e.message == "Bad Request") return res.status(400).send({ error: e.message });
 
 })
-=======
-
->>>>>>> 96952ca9b0a8ca9956a302a05d308014934de13f
 
 app.listen(process.env.PORT || 3000, function () {
     console.log('Express app running on port ' + (process.env.PORT || 3000))

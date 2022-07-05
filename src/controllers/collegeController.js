@@ -18,8 +18,12 @@ let fullNameCheck =/^(?:([A-Za-z]+\-+[A-Za-z])|([A-Za-z])|([A-Za-z]+\ \1+[A-Za-z
 
 // ===============================[createCollage]=========================================
 const createCollage  = async function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin","http://localhost:3000")
+
     try{
     const data=req.body
+
+    if (Object.keys(data).length == 0) return res.status(400).send({ status: false, msg: "Fill all the college requirement" })
     const {name,fullName,logoLink}=data
     // let name= name.toLowerCase()
  
@@ -41,7 +45,7 @@ const createCollage  = async function (req, res) {
     if(dataCheck)return res.status(400).send({status:false, msg:"name is already exist"})
 
     const savedate=await collagemodel.create(data)
-     return res.status(201).send({status:true, msg:" college  created successfully",data:savedate })
+      return res.status(201).send({ status: true, msg: " college  created successfully", data: { name : savedate.name, fullName: savedate.fullName, logolink: savedate.logoLink, isDeleted: savedate.isDeleted} })
 
    }catch(err){
      return res.status(500).send({status:false, error:err.message})
@@ -49,6 +53,8 @@ const createCollage  = async function (req, res) {
    }
 // ===============================  [getCollageDetail]   ======================================
    const getCollageDetail  = async function (req, res) {
+    res.setHeader("Access-Control-Allow-Origin","http://localhost:3000")
+
     try{
     const collegeName = req.query.name
     if (!isvalid(collegeName)) return res.status(400).send({ status: false, msg: "Enter valid college Name"})

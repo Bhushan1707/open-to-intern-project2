@@ -12,6 +12,4 @@ router.post("/functionup/interns",createintern)
 
 router.get("/functionup/collegeDetails", getCollageDetail)
 
-
-
 module.exports = router;
